@@ -3,6 +3,9 @@ dist/
 /.angular/
 # Dependency directories
 node_modules/
+.angular
+.vscode
+
 
 # IDEs and editors
 .idea/
