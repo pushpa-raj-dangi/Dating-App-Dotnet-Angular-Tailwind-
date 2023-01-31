@@ -1,4 +1,5 @@
 using API.Extensions;
+using API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,8 @@ builder.Services.AddIdentityServices(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseMiddleware<ExceptionMiddleware>();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -25,6 +28,7 @@ if (app.Environment.IsDevelopment())
 
 
 app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
+
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
