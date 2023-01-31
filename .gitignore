@@ -1,12 +1,12 @@
 # node_modules/
 dist/
-.angular
+/.angular/
 # Dependency directories
 node_modules/
 
 # IDEs and editors
 .idea/
-.vscode/
+/.vscode/
 *.iml
 *.swp
 
