@@ -4,12 +4,10 @@ dist/
 node_modules/
 .angular/
 .vscode/
-/client/.angular/
-/client/.vscode/
 
 client/.angular/
-client/.vscode/
-client/.angular
+
+
 # IDEs and editors
 .idea/
 /.vscode/
@@ -43,3 +41,13 @@ yarn-error.log*
 # For MacOS users
 .DS_Store
 
+client/.angular
+client/.angular/cache/
+.angular
+client/.angular/cache/15.1.3/angular-webpack/2072028891cbf7a8c22306961f48cfcd1e92c3d7/0.pack
+client/.angular/cache/15.1.3/angular-webpack/2072028891cbf7a8c22306961f48cfcd1e92c3d7/1.pack
+client/.angular/cache/15.1.3/angular-webpack/2072028891cbf7a8c22306961f48cfcd1e92c3d7/3.pack
+client/.angular/cache/15.1.3/angular-webpack/2072028891cbf7a8c22306961f48cfcd1e92c3d7/12.pack
+client/.angular/cache/15.1.3/angular-webpack/2072028891cbf7a8c22306961f48cfcd1e92c3d7/2.pack
+client/.angular/cache/15.1.3/angular-webpack/2072028891cbf7a8c22306961f48cfcd1e92c3d7/3.pack
+client/.angular/cache/15.1.3/angular-webpack/2072028891cbf7a8c22306961f48cfcd1e92c3d7/6.pack

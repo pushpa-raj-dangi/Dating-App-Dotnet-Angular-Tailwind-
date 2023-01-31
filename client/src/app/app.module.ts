@@ -1,4 +1,4 @@
-import { ErrorInterceptor } from './interceptors/error-interceptor.interceptor';
+import { ErrorInterceptor } from './core/interceptors/error-interceptor.interceptor';
 import { TestErrorComponent } from './errors/test-error/test-error.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
