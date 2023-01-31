@@ -1,0 +1,182 @@
+<div class="h-screen">
+  <div class="bg-slate-100 ">
+    <div class="md:px-52 flex justify-between  md:p-10">
+
+      <div class="h-screen">
+        <h1 class="text-2xl text-blue-900 my-4 ml-9 ">Welcome to <span
+            class="fw-bold text-5xl text-red-600">Matcher</span>
+        </h1>
+        <h3 class="text-blue-600 text-2xl my-3 ml-9">Let's connect !</h3>
+
+        <div class="shadow-md bg-white mx-5 py-16 border-slate-300 rounded-md  text-slate-500">
+          <h1 class="font-semibold text-center py-5">
+            {{type === loginType ? login_text: register_text }}
+          </h1>
+
+          <div class="px-12 py-5" *ngIf="type===loginType">
+            <form [formGroup]="login" (ngSubmit)="loginHandler()">
+
+              <div class="mt-3">
+                <input type="text" formControlName="username" class="text-input" placeholder="Username *">
+                <div
+                  *ngIf="loginForm['username']?.invalid && (loginForm['username']?.dirty || loginForm['username']?.touched)">
+                  <p *ngIf="loginForm['username'].errors?.['required']" class="mt-2  text-pink-600 text-sm">
+                    Username is required.
+                  </p>
+                  <p *ngIf="loginForm['username'].errors?.['minlength']" class="mt-2  text-pink-600 text-sm">
+                    At least 3 character is required.
+                  </p>
+                </div>
+              </div>
+              <div class="mt-3">
+                <div class="relative">
+                  <input formControlName="password" type="{{ show ? 'password' : 'text' }}" class="password-input"
+                    placeholder="Password *" />
+                  <div class="show-password" (click)="hideShow()">
+                    <div [style.visibility]="show ? 'visible' : 'hidden'">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+
+                    </div>
+                    <div [style.visibility]="show ? 'hidden' : 'visible'">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+                      </svg>
+
+                    </div>
+                  </div>
+
+                </div>
+                <div
+                  *ngIf="loginForm['password']?.invalid && (loginForm['password']?.dirty || loginForm['password']?.touched)">
+
+                  <p *ngIf="loginForm['password']?.errors?.['required']" class="mt-2  text-pink-600 text-sm">
+                    Password is required.
+                  </p>
+                </div>
+
+                <div class="text-center py-5">
+                  <button type="submit" class="btn">
+                    {{ loginBtnText}}
+                  </button>
+
+                </div>
+
+                <p class="text-sm text-center">Don't have account ? <span
+                    class="cursor-pointer text-blue-400 font-semibold"
+                    (click)="changeType(registerType)">{{registerBtnText}}</span>
+                </p>
+              </div>
+            </form>
+
+          </div>
+          <form [formGroup]="register" (ngSubmit)="registerHandler()" class="px-10" *ngIf="type===registerType">
+            <div class="mt-3">
+              <input type="text" class="text-input" placeholder="Username *" formControlName="username">
+              <div
+                *ngIf="registerForm['username']?.invalid && (registerForm['username']?.dirty || registerForm['username']?.touched)">
+
+                <p *ngIf="registerForm['username']?.errors?.['required']" class="mt-2  text-pink-600 text-sm">
+                  Please provide a username
+
+                </p>
+              </div>
+
+            </div>
+            <div class="mt-3">
+              <div class="relative">
+                <input type="{{ show ? 'password' : 'text' }}" class="password-input" placeholder="Password *"
+                  formControlName="password" />
+                <div class="show-password" (click)="hideShow()">
+                  <div [style.visibility]="show ? 'visible' : 'hidden'">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor" class="w-5 h-5">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+
+                  </div>
+                  <div [style.visibility]="show ? 'hidden' : 'visible'">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor" class="w-5 h-5">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+                    </svg>
+
+                  </div>
+                </div>
+              </div>
+              <div
+                *ngIf="registerForm['password']?.invalid && (registerForm['password']?.dirty || registerForm['password']?.touched)">
+
+                <p *ngIf="registerForm['password']?.errors?.['required']" class="mt-2  text-pink-600 text-sm">
+                  Please provide a password.
+
+                </p>
+              </div>
+              <div class="relative mt-3">
+                <input type="{{ show ? 'password' : 'text' }}" class="password-input" placeholder="Confirm password*"
+                  formControlName="confirmPassword" />
+                <div class="absolute flex items-center justify-between right-2 cursor-pointer top-0 bottom-0"
+                  (click)="hideShow()">
+                  <div [style.visibility]="show ? 'visible' : 'hidden'">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor" class="w-5 h-5">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+
+                  </div>
+                  <div [style.visibility]="show ? 'hidden' : 'visible'">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor" class="w-5 h-5">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+                    </svg>
+
+                  </div>
+                </div>
+              </div>
+              <div
+                *ngIf="registerForm['confirmPassword']?.invalid && (registerForm['confirmPassword']?.dirty || registerForm['confirmPassword']?.touched)">
+
+                <p *ngIf="registerForm['confirmPassword']?.errors?.['required']" class="mt-2  text-pink-600 text-sm">
+                  Please provide a confirm password.
+
+                </p>
+                <p class="mt-2  text-pink-600 text-sm" *ngIf="registerForm['confirmPassword']?.errors?.['matching']">
+                  Confirm Password does not match
+                </p>
+              </div>
+
+              <div class="text-center py-5">
+                <button type="button" type="button" class="btn" (click)="registerHandler()">
+                  {{ registerBtnText}}
+                </button>
+
+              </div>
+
+              <p class="text-sm text-center">Already have account? <span
+                  class="cursor-pointer text-blue-400 font-semibold"
+                  (click)="changeType(loginType)">{{loginBtnText}}</span>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+      <img src="../../../assets/images/register-bg.svg" class=" hidden md:block md:w-1/2 aspect-video md:aspect-square">
+    </div>
+
+
+
+  </div>
+
+</div>

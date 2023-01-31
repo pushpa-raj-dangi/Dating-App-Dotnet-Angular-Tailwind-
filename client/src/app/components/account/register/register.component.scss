@@ -1,0 +1,24 @@
+.register-bg {
+  background-image: url("../../../../assets/images/register-bg.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  mix-blend-mode: revert;
+  background-blend-mode: color-burn;
+}
+
+.btn {
+  @apply bg-blue-500 text-white rounded-md shadow-sm shadow-slate-100 text-sm px-6 py-2 hover:bg-blue-800 transition delay-75;
+}
+
+.text-input {
+  @apply border rounded-md py-3 px-3  w-full focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1;
+}
+
+.password-input {
+  @apply border rounded-md py-3 px-3 w-full relative focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1;
+}
+
+.show-password {
+  @apply absolute flex items-center right-2 justify-between cursor-pointer top-0 bottom-0;
+}

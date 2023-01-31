@@ -1,0 +1,78 @@
+<div class="bg-white flex px-5 md:px-20 py-4 border-b border-gray-100  justify-between items-center">
+  <div [routerLink]="['/']" class="hidden md:block relative">
+    <h1 class="text-blue-700 cursor-pointer  font-sans ">Match
+
+      <span class="bg-red-600 rounded-full p-2 absolute -bottom-1 text-white">
+        TM
+      </span>
+    </h1>
+  </div>
+  <div class="menu">
+    <div class="block md:hidden ">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+      </svg>
+
+    </div>
+    <ul
+      class="hidden p-5 md:p-0 bg-white md:bg-transparent md:flex flex-col md:flex-row space-x-0 space-y-5 md:space-y-0  md:space-x-8 font-body font-bold  capitalize menu-items absolute ">
+      <li class="text-blue-600 cursor-pointer" [routerLink]="['/']">Home</li>
+      <li class="text-blue-400 cursor-pointer">About us</li>
+      <li class="text-blue-400 cursor-pointer">Features</li>
+      <li class="text-blue-400 cursor-pointer">Contact Us</li>
+    </ul>
+  </div>
+  <div>
+    <button *ngIf="!(currentUser$ | async) else user" [routerLink]="['/account']"
+      class="border-3 border-red-500 shadow-sm shadow-slate-600 text-sm flex justify-between items-center font-bold text-white bg-red-500 py-2 px-5 uppercase rounded-full hover:bg-blue-500 hover:border-blue-500  hover:text-white transition duration-75">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="stroke-2 w-5 h-5">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+      </svg>
+      <span class="ml-3">
+        Log in
+      </span>
+    </button>
+    <ng-template #user>
+      <div class="dropdown inline-block relative">
+
+        <button [routerLink]="['/account']"
+          class="bg-red-600 text-white font-semibold flex justify-between items-center  py-2 px-5 capitalize rounded-full hover:bg-blue-500 hover:border-blue-500  hover:text-white transition duration-75">
+          <span>{{(currentUser$ | async).userName}}</span>
+          <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+          </svg>
+        </button>
+        <ul class="dropdown-menu rounded-md bg-white shadow-md absolute hidden text-gray-700 pt-1">
+          <li (click)="logout()"><a
+              class="  flex  flex-row-reverse justify-between  hover:bg-red-400 hover:rounded-md hover:text-white  py-2 px-5  whitespace-no-wrap"
+              href="#">
+              Logout <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+              </svg>
+
+            </a>
+          </li>
+          <li><a
+              class="  flex  flex-row-reverse justify-between  hover:bg-red-400 hover:rounded-md hover:text-white py-2 px-5  whitespace-no-wrap"
+              href="#">
+              Profile<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+
+
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+    </ng-template>
+  </div>
+</div>
