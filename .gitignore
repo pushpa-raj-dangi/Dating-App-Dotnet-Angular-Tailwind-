@@ -4,7 +4,8 @@ dist/
 node_modules/
 .angular
 .vscode
-
+client/.angular
+client/.vscode
 
 # IDEs and editors
 .idea/
@@ -38,5 +39,4 @@ yarn-error.log*
 
 # For MacOS users
 .DS_Store
-client/.angular
-client/.vscode
+
