@@ -39,3 +39,4 @@ yarn-error.log*
 
 # For MacOS users
 .DS_Store
+client/.angular/cache/15.1.3/angular-webpack/2072028891cbf7a8c22306961f48cfcd1e92c3d7/0.pack
