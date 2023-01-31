@@ -3,7 +3,7 @@ import { User } from 'src/app/components/account/models/user.interface';
 import { Login } from 'src/app/components/account/models/login.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, ReplaySubject, map } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,7 @@ export class AccountService {
   constructor(private http: HttpClient) {}
 
   login$ = (user: Login) =>
-    this.http.post(`{this.apiUrl}account/login`, user).pipe(
+    this.http.post(`${this.apiUrl}account/login`, user).pipe(
       map((response: User) => {
         const user = response;
         if (user) {
@@ -30,7 +30,7 @@ export class AccountService {
       })
     );
 
-  register$ = (user: Login) =>
+  register$ = (user: Login): Observable<any> =>
     this.http.post(`${this.apiUrl}account/register`, user).pipe(
       map((response: User) => {
         const user = response;

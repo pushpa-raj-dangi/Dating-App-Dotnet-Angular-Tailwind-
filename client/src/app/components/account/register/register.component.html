@@ -162,7 +162,12 @@
                   {{ registerBtnText}}
                 </button>
 
+                <p *ngIf="errorMessage" class="mt-2  text-pink-600 text-sm">
+                  {{errorMessage}}
+                </p>
               </div>
+
+
 
               <p class="text-sm text-center">Already have account? <span
                   class="cursor-pointer text-blue-400 font-semibold"

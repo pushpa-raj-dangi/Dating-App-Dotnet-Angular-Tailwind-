@@ -36,6 +36,7 @@ export class RegisterComponent implements OnInit {
 
   login!: FormGroup;
   register!: FormGroup;
+  errorMessage: string;
 
   constructor(
     private userService: UserService,
@@ -93,7 +94,9 @@ export class RegisterComponent implements OnInit {
       () => {
         this.router.navigate(['/']);
       },
-      () => {}
+      (error) => {
+        this.errorMessage = error.error;
+      }
     );
   }
 
