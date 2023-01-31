@@ -54,13 +54,10 @@ export class RegisterComponent implements OnInit {
 
   loginHandler(): void {
     this.accountService.login$(this.login.value).subscribe(
-      (x) => {
-        console.log(x);
+      () => {
         this.router.navigate(['/']);
       },
-      (error) => {
-        console.log(error);
-      }
+      () => {}
     );
   }
 
@@ -92,7 +89,12 @@ export class RegisterComponent implements OnInit {
   }
 
   registerHandler() {
-    console.log(this.register.value);
+    this.accountService.register$(this.register.value).subscribe(
+      () => {
+        this.router.navigate(['/']);
+      },
+      () => {}
+    );
   }
 
   private buildRegisterForm(): void {

@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { User } from 'src/app/components/account/models/user.interface';
 import { Login } from 'src/app/components/account/models/login.interface';
 import { Injectable } from '@angular/core';
@@ -8,6 +9,7 @@ import { BehaviorSubject, ReplaySubject, map } from 'rxjs';
   providedIn: 'root',
 })
 export class AccountService {
+  apiUrl = environment.API_URL;
   private _isLoggedIn = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this._isLoggedIn.asObservable();
 
@@ -17,7 +19,19 @@ export class AccountService {
   constructor(private http: HttpClient) {}
 
   login$ = (user: Login) =>
-    this.http.post('https://localhost:5001/api/account/login', user).pipe(
+    this.http.post(`{this.apiUrl}account/login`, user).pipe(
+      map((response: User) => {
+        const user = response;
+        if (user) {
+          localStorage.setItem('user', JSON.stringify(user));
+          this.currentUserSource.next(user);
+          this._isLoggedIn.next(true);
+        }
+      })
+    );
+
+  register$ = (user: Login) =>
+    this.http.post(`${this.apiUrl}account/register`, user).pipe(
       map((response: User) => {
         const user = response;
         if (user) {
