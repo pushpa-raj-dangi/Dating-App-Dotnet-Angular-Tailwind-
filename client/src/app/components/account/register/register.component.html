@@ -94,7 +94,7 @@
                 <input type="{{ show ? 'password' : 'text' }}" class="password-input" placeholder="Password *"
                   formControlName="password" />
                 <div class="show-password" (click)="hideShow()">
-                  <div [style.visibility]="show ? 'visible' : 'hidden'">
+                  <div *ngIf="show">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                       stroke="currentColor" class="w-5 h-5">
                       <path stroke-linecap="round" stroke-linejoin="round"
@@ -103,7 +103,7 @@
                     </svg>
 
                   </div>
-                  <div [style.visibility]="show ? 'hidden' : 'visible'">
+                  <div *ngIf="!show">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                       stroke="currentColor" class="w-5 h-5">
                       <path stroke-linecap="round" stroke-linejoin="round"
@@ -126,7 +126,7 @@
                   formControlName="confirmPassword" />
                 <div class="absolute flex items-center justify-between right-2 cursor-pointer top-0 bottom-0"
                   (click)="hideShow()">
-                  <div [style.visibility]="show ? 'visible' : 'hidden'">
+                  <div *ngIf="!show">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                       stroke="currentColor" class="w-5 h-5">
                       <path stroke-linecap="round" stroke-linejoin="round"
@@ -135,7 +135,7 @@
                     </svg>
 
                   </div>
-                  <div [style.visibility]="show ? 'hidden' : 'visible'">
+                  <div *ngIf="show">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                       stroke="currentColor" class="w-5 h-5">
                       <path stroke-linecap="round" stroke-linejoin="round"
@@ -162,7 +162,12 @@
                   {{ registerBtnText}}
                 </button>
 
+                <p *ngIf="errorMessage" class="mt-2  text-pink-600 text-sm">
+                  {{errorMessage}}
+                </p>
               </div>
+
+
 
               <p class="text-sm text-center">Already have account? <span
                   class="cursor-pointer text-blue-400 font-semibold"

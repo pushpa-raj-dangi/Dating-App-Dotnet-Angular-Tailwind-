@@ -2,11 +2,14 @@
 dist/
 # Dependency directories
 node_modules/
-.angular
-.vscode
-client/.angular
-client/.vscode
+.angular/
+.vscode/
+/client/.angular/
+/client/.vscode/
 
+client/.angular/
+client/.vscode/
+client/.angular
 # IDEs and editors
 .idea/
 /.vscode/
