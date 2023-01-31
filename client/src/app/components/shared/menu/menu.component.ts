@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { User } from 'src/app/components/account/models/user.interface';
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from 'src/app/services/account.service';
+import { AccountService } from 'src/app/core/services/account.service';
 
 @Component({
   selector: 'app-menu',

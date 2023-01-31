@@ -17,7 +17,7 @@ logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
+*.angular
 # Build files
 *.ngfactory.ts
 *.shim.ts

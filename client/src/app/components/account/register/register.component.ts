@@ -1,5 +1,5 @@
 import { User } from './../models/user.interface';
-import { AccountService } from 'src/app/services/account.service';
+import { AccountService } from 'src/app/core/services/account.service';
 import {
   LOGIN,
   LOGIN_BTN_TEXT,
@@ -7,9 +7,9 @@ import {
   REGISTER,
   REGISTER_BTN_TEXT,
   REGISTER_TEXT,
-} from 'src/app/constants/app.constants';
+} from 'src/app/core/constants/app.constants';
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../../services/user.service';
+import { UserService } from '../../../core/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   AbstractControl,
