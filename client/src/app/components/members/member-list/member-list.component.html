@@ -1,0 +1,6 @@
+<div class="grid md:px-56  h-screen md:py-10  grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-5">
+  <ng-container *ngFor="let item of members$ | async">
+
+    <app-member-card [member]="item" />
+  </ng-container>
+</div>

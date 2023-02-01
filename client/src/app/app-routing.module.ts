@@ -21,6 +21,13 @@ const routes: Routes = [
         (m) => m.AccountModule
       ),
   },
+  {
+    path: 'members',
+    loadChildren: () =>
+      import('src/app/components/members/members.module').then(
+        (m) => m.MembersModule
+      ),
+  },
 ];
 
 @NgModule({
