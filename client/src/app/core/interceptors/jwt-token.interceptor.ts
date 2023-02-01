@@ -1,18 +1,35 @@
+import { AccountService } from 'src/app/core/services/account.service';
+
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
+import { User } from 'src/app/components/account/models/user.interface';
 
 @Injectable()
 export class JwtTokenInterceptor implements HttpInterceptor {
+  constructor(private accountService: AccountService) {}
 
-  constructor() {}
+  intercept(
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  ): Observable<HttpEvent<unknown>> {
+    let currentUser: User;
+    this.accountService.currentUser$
+      .pipe(take(1))
+      .subscribe((user) => (currentUser = user));
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    if (currentUser) {
+      request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${currentUser.token}`,
+        },
+      });
+    }
     return next.handle(request);
   }
 }
