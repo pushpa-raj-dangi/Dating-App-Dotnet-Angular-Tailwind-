@@ -38,7 +38,7 @@
     <ng-template #user>
       <div class="dropdown inline-block relative">
 
-        <button [routerLink]="['/account']"
+        <button
           class="bg-red-600 text-white font-semibold flex justify-between items-center  py-2 px-5 capitalize rounded-full hover:bg-blue-500 hover:border-blue-500  hover:text-white transition duration-75">
           <span>{{(currentUser$ | async).userName}}</span>
           <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

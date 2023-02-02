@@ -1,13 +1,21 @@
-<!-- <pre>
-{{member$ | async | json}}
-</pre> -->
 <ng-container *ngIf="member$ | async as member">
 
+  <div *ngIf="message"
+    class="flex bg-slate-100  py-2 justify-center absolute right-20 transition-all delay-150 text-green-900">
+    <div class="bg-white flex px-3 rounded-md py-3">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <span class="pl-2">{{message}}</span>
+    </div>
+  </div>
+  <form [formGroup]="form"
+    class="grid bg-slate-100 md:px-96  h-[calc(100vh-74px)] place-items-stretch  grid-cols-2 place-content-center	">
 
+    <div class=" bg-white rounded-md  ">
 
-  <div class="grid bg-slate-100 md:px-96  h-[calc(100vh-74px)] place-items-stretch  grid-cols-2 place-content-center	">
-
-    <div class=" bg-white rounded-md h-[calc(100vh-150px)] ">
       <!-- {{member | json}} -->
       <div class="">
         <div class="bg-white  overflow-auto rounded-sm rounded-t-md rounded-b-none shadow-md pb-3 px-3">
@@ -61,41 +69,57 @@
                   </svg>
 
                 </span> </h1>
-              <textarea
+              <textarea formControlName="introduction"
                 class="block p-2.5 w-full disabled text-sm text-gray-900 bg-gray-50 rounded-lg border  dark:placeholder-gray-400 dark:text-black dark:focus:ring-gray-50 dark:focus:border-gray-200"
                 rows="7">
-                {{member.introduction}}
+
               </textarea>
             </div>
 
             <div class="bg-gray-50 p-2 my-4 rounded-md text-left">
               <h1 class="text-gray-500 ">Looking for</h1>
 
-              <textarea
+              <textarea formControlName="lookingFor"
                 class="block my-3 p-2.5 w-full disabled text-sm text-gray-900 bg-gray-50 rounded-lg border  dark:placeholder-gray-400 dark:text-black dark:focus:ring-gray-50 dark:focus:border-gray-200"
                 rows="13">
-                              {{member.lookingFor}}
+
                             </textarea>
               <h1 class="text-gray-500 "> Interests </h1>
 
-              <textarea
+              <textarea formControlName="interests"
                 class="block p-2.5 w-full disabled text-sm text-gray-900 bg-gray-50 rounded-lg border  dark:placeholder-gray-400 dark:text-black dark:focus:ring-gray-50 dark:focus:border-gray-200"
-                rows="7">{{member.interests}}
+                rows="7">{{ member.interests }}
                             </textarea>
             </div>
 
           </div>
           <div *ngIf="type==='address'">
             <h1>Address</h1>
+            <h1 class="my-2 text-gray-400">City</h1>
+            <h5>
+              <input class="border border-gray-200 p-3 rounded-md w-full" type="text" formControlName="city">
+            </h5>
+            <h1 class="my-2 text-gray-400">Country</h1>
+            <h5>
+              <input class="border border-gray-200 p-3 rounded-md w-full" type="text" formControlName="country">
+            </h5>
           </div>
           <div *ngIf="type==='payment'">
             <h1>Payment</h1>
+            <h5 class="my-3 text-gray-300 ">Not available</h5>
           </div>
 
         </div>
+        <div class="text-right my-3 pr-10">
+
+          <button (click)="updateInfo()"
+            class="bg-blue-500 hover:bg-red-700 text-white py-1 px-3 rounded-full shadow-sm    shadow-gray-800">
+            {{'Update'}}
+          </button>
+        </div>
       </div>
     </div>
-    <div class="bg-white  rounded-md relative  h-[calc(100vh-150px)] overflow-hidden bg-cover bg-center"
+    <div class="bg-white  rounded-md relative  overflow-hidden bg-cover bg-center"
       style="background-image:url({{member.photoUrl}});">
       <div class="absolute top-0 mt-20 right-0 bottom-0 left-0 bg-gradient-to-b from-transparent to-gray-900"></div>
 
@@ -121,5 +145,5 @@
       </div>
     </div>
 
-  </div>
+  </form>
 </ng-container>

@@ -9,7 +9,7 @@ import { BehaviorSubject, ReplaySubject, map, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AccountService {
-  apiUrl = environment.API_URL;
+  private apiUrl = environment.API_URL;
   private _isLoggedIn = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this._isLoggedIn.asObservable();
 
