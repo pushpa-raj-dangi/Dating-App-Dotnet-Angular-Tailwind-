@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Member } from 'src/app/core/models/member';
 
 @Component({
@@ -8,7 +8,7 @@ import { Member } from 'src/app/core/models/member';
 })
 export class MemberCardComponent {
   @Input() member: Member;
-
+  @Output() toggleDetail: EventEmitter<string> = new EventEmitter<string>();
   monthNames = [
     'January',
     'February',
@@ -28,5 +28,9 @@ export class MemberCardComponent {
     const convertedDate = new Date(date);
 
     return this.monthNames[convertedDate.getMonth()]; // Returns 'June'
+  }
+
+  toggleDetailFromChild(username: string) {
+    this.toggleDetail.emit(username);
   }
 }

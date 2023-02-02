@@ -1,5 +1,5 @@
-import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, switchMap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Member } from '../models/member';
@@ -15,6 +15,13 @@ export class MembersService {
   members$ = (): Observable<Member[]> =>
     this.http.get<Member[]>(this.apiUrl + 'users');
 
-  member$ = (username: string): Observable<Member> =>
-    this.http.get<Member>(this.apiUrl + 'users/' + username);
+  member$(username: Observable<string>): Observable<Member> {
+    console.log(username);
+
+    return username.pipe(
+      switchMap((username) =>
+        this.http.get<Member>(this.apiUrl + 'users/' + username)
+      )
+    );
+  }
 }

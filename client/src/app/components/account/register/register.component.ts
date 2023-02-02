@@ -49,7 +49,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.getParams();
     this.buildLoginForm();
-    this.getUser();
     this.buildRegisterForm();
   }
 
@@ -113,12 +112,6 @@ export class RegisterComponent implements OnInit {
         ],
       }
     );
-  }
-
-  private getUser(): void {
-    this.userService.getUsers$.subscribe((x) => {
-      console.log(x);
-    });
   }
 
   private setCurrentUser() {

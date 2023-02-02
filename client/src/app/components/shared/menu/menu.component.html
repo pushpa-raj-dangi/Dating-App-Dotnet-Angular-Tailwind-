@@ -1,5 +1,5 @@
-<div class="bg-white flex px-5 md:px-20 py-4 border-b border-gray-100  justify-between items-center">
-  <div [routerLink]="['/']" class="hidden md:block relative">
+<div class="bg-white md:grid md:grid-cols-3 flex gap-4 px-5 items-center  md:px-20 py-4 border-b border-gray-100  ">
+  <div [routerLink]="['/']" class="hidden flex-none  md:block relative">
     <h1 class="text-blue-700 cursor-pointer  font-sans ">Match
 
       <span class="bg-red-600 rounded-full p-2 absolute -bottom-1 text-white">
@@ -8,7 +8,7 @@
     </h1>
   </div>
   <div class="menu">
-    <div class="block md:hidden ">
+    <div class="flex md:hidden items-center ">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
         class="w-6 h-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -16,14 +16,14 @@
 
     </div>
     <ul
-      class="hidden p-5 md:p-0 bg-white md:bg-transparent md:flex flex-col md:flex-row space-x-0 space-y-5 md:space-y-0  md:space-x-8 font-body font-bold  capitalize menu-items absolute ">
+      class="hidden p-5 md:p-0 bg-white shadow-md md:shadow-none rounded-md md:bg-transparent md:flex flex-col md:flex-row space-x-0  md:space-y-0  md:space-x-8 font-body font-bold md:relative capitalize menu-items absolute ">
       <li class="text-blue-600 cursor-pointer" [routerLink]="['/members']">Members</li>
       <li class="text-blue-400 cursor-pointer">About us</li>
       <li class="text-blue-400 cursor-pointer">Features</li>
       <li class="text-blue-400 cursor-pointer">Contact Us</li>
     </ul>
   </div>
-  <div>
+  <div class="justify-end w-full text-right">
     <button *ngIf="!(currentUser$ | async) else user" [routerLink]="['/account']"
       class="border-3 border-red-500 shadow-sm shadow-slate-600 text-sm flex justify-between items-center font-bold text-white bg-red-500 py-2 px-5 uppercase rounded-full hover:bg-blue-500 hover:border-blue-500  hover:text-white transition duration-75">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -45,7 +45,7 @@
             <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
           </svg>
         </button>
-        <ul class="dropdown-menu rounded-md bg-white shadow-md absolute hidden text-gray-700 pt-1">
+        <ul class="dropdown-menu rounded-md bg-white shadow-md absolute hidden text-gray-700 pt-0">
           <li (click)="logout()"><a
               class="  flex  flex-row-reverse justify-between  hover:bg-red-400 hover:rounded-md hover:text-white  py-2 px-5  whitespace-no-wrap"
               href="#">
@@ -58,8 +58,8 @@
             </a>
           </li>
           <li><a
-              class="  flex  flex-row-reverse justify-between  hover:bg-red-400 hover:rounded-md hover:text-white py-2 px-5  whitespace-no-wrap"
-              href="#">
+              class=" flex  flex-row-reverse justify-between  hover:bg-red-400 hover:rounded-md hover:text-white py-2 px-5  whitespace-no-wrap"
+              routerLink="/my/profile">
               Profile<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round"

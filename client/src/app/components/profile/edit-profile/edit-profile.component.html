@@ -1,0 +1,125 @@
+<!-- <pre>
+{{member$ | async | json}}
+</pre> -->
+<ng-container *ngIf="member$ | async as member">
+
+
+
+  <div class="grid bg-slate-100 md:px-96  h-[calc(100vh-74px)] place-items-stretch  grid-cols-2 place-content-center	">
+
+    <div class=" bg-white rounded-md h-[calc(100vh-150px)] ">
+      <!-- {{member | json}} -->
+      <div class="">
+        <div class="bg-white  overflow-auto rounded-sm rounded-t-md rounded-b-none shadow-md pb-3 px-3">
+          <ol class="mt-4 grid  grid-cols-3 text-sm font-medium text-gray-500 cursor-pointer">
+            <li (click)="toggle('detail')" [class.bg-gray-100]="type==='detail'"
+              class="flex items-center justify-center text-center  py-3 rounded-md  text-blue-600">
+
+              <span class="hidden sm:inline"> Details </span>
+
+              <svg class="h-6 w-6 sm:ml-2 sm:h-5 sm:w-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
+              </svg>
+            </li>
+
+            <li (click)="toggle('address')" [class.bg-gray-100]="type==='address'"
+              class="flex items-center rounded-md justify-center text-blue-600">
+              <span class="hidden sm:inline"> Address </span>
+
+              <svg class="h-6 w-6 sm:ml-2 sm:h-5 sm:w-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </li>
+
+            <li (click)="toggle('payment')" [class.bg-gray-100]="type==='payment'"
+              class="flex items-center rounded-md text-blue-600 justify-center">
+              <span class="hidden sm:inline"> Payment </span>
+
+              <svg class="h-6 w-6 sm:ml-2 sm:h-5 sm:w-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+              </svg>
+            </li>
+          </ol>
+        </div>
+
+        <div class="p-4 h-[calc(100vh-240px)] rounded-md  overscroll-contain ease-in duration-300  overflow-auto">
+          <div *ngIf="type==='detail'">
+            <div class="bg-gray-50 p-2 rounded-md text-left">
+              <h1 class="text-gray-500 flex mb-3   ">About me <span
+                  class="bg-white ml-4 rounded-sm h-2 w-2 cursor-pointer p-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                  </svg>
+
+                </span> </h1>
+              <textarea
+                class="block p-2.5 w-full disabled text-sm text-gray-900 bg-gray-50 rounded-lg border  dark:placeholder-gray-400 dark:text-black dark:focus:ring-gray-50 dark:focus:border-gray-200"
+                rows="7">
+                {{member.introduction}}
+              </textarea>
+            </div>
+
+            <div class="bg-gray-50 p-2 my-4 rounded-md text-left">
+              <h1 class="text-gray-500 ">Looking for</h1>
+
+              <textarea
+                class="block my-3 p-2.5 w-full disabled text-sm text-gray-900 bg-gray-50 rounded-lg border  dark:placeholder-gray-400 dark:text-black dark:focus:ring-gray-50 dark:focus:border-gray-200"
+                rows="13">
+                              {{member.lookingFor}}
+                            </textarea>
+              <h1 class="text-gray-500 "> Interests </h1>
+
+              <textarea
+                class="block p-2.5 w-full disabled text-sm text-gray-900 bg-gray-50 rounded-lg border  dark:placeholder-gray-400 dark:text-black dark:focus:ring-gray-50 dark:focus:border-gray-200"
+                rows="7">{{member.interests}}
+                            </textarea>
+            </div>
+
+          </div>
+          <div *ngIf="type==='address'">
+            <h1>Address</h1>
+          </div>
+          <div *ngIf="type==='payment'">
+            <h1>Payment</h1>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="bg-white  rounded-md relative  h-[calc(100vh-150px)] overflow-hidden bg-cover bg-center"
+      style="background-image:url({{member.photoUrl}});">
+      <div class="absolute top-0 mt-20 right-0 bottom-0 left-0 bg-gradient-to-b from-transparent to-gray-900"></div>
+
+      <div class="absolute p-5 bottom-0 grid   w-full grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-5">
+        <div
+          class="bg-gray-900 p-2 border-2 border-gray-300 border-dashed h-24 rounded-md w-full text-white items-center flex justify-center">
+          1</div>
+        <div
+          class="bg-gray-900 p-2 border-2 border-gray-300 border-dashed h-24 rounded-md w-full text-white items-center flex justify-center">
+          1</div>
+        <div
+          class="bg-gray-900 p-2 border-2 border-gray-300 border-dashed h-24 rounded-md w-full text-white items-center flex justify-center">
+          1</div>
+        <div
+          class="bg-gray-900 p-2 border-2 border-gray-300 border-dashed h-24 rounded-md w-full text-white items-center flex justify-center">
+          1</div>
+        <div
+          class="bg-gray-900 p-2 border-2 border-gray-300 border-dashed h-24 rounded-md w-full text-white items-center flex justify-center">
+          1</div>
+        <div
+          class="bg-gray-900 p-2 border-2 border-gray-300 border-dashed h-24 rounded-md w-full text-white items-center flex justify-center">
+          1</div>
+      </div>
+    </div>
+
+  </div>
+</ng-container>

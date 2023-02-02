@@ -28,6 +28,22 @@ const routes: Routes = [
         (m) => m.MembersModule
       ),
   },
+  {
+    path: 'members/:username',
+    loadChildren: () =>
+      import('src/app/components/members/members.module').then(
+        (m) => m.MembersModule
+      ),
+    data: { animation: 'routeSlide' },
+  },
+  {
+    path: 'my/profile',
+    loadChildren: () =>
+      import('src/app/components/profile/profile.module').then(
+        (m) => m.ProfileModule
+      ),
+    data: { animation: 'routeSlide' },
+  },
 ];
 
 @NgModule({
