@@ -1,7 +1,7 @@
 <div (click)="toggleDetailFromChild(member.userName)"
   class="relative md:px-4 h-96 w-full flex items-end justify-start rounded-md overflow-hidden text-left bg-cover bg-center"
   style="background-image:url({{member.photoUrl}});">
-  <div class="absolute top-0 mt-20 right-0 bottom-0 left-0 bg-gradient-to-b from-transparent to-blue-900"></div>
+  <div class="absolute top-0  mt-20 right-0 bottom-0 left-0 bg-gradient-to-b from-transparent to-blue-900"></div>
   <div class="absolute top-0 right-0 left-0 mx-5 mt-2 flex justify-between items-center">
     <a href="#"
       class="text-xs font-bold text-white  bg-red-700 px-2 py-2  hover:bg-white hover:text-indigo-600 shadow-sm transition ease-in-out duration-500 rounded-full">On</a>
@@ -27,7 +27,7 @@
       </div>
 
     </div>
-    <div href="#"
+    <div class="h-10"
       class="text-md flex justify-between w-full text-center tracking-tight font-medium leading-7 font-regular text-white ">
       <div
         class="bg-gradient-to-r from-purple-500 to-pink-500 p-3 rounded-full shadow-md cursor-pointer transition duration-100 hover:scale-110  border-blue-600">
@@ -56,4 +56,5 @@
 
     </div>
   </main>
+
 </div>

@@ -80,4 +80,39 @@ export class EditProfileComponent implements OnInit {
       )
       .subscribe();
   }
+
+  imageSrc;
+
+  openCamera() {
+    const constraints = {
+      video: {
+        facingMode: 'user',
+      },
+    };
+
+    navigator.mediaDevices
+      .getUserMedia(constraints)
+      .then((stream) => {
+        const video = document.createElement('video');
+        video.srcObject = stream;
+        video.addEventListener('loadedmetadata', () => {
+          video.play();
+        });
+
+        video.addEventListener('click', () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          canvas.getContext('2d').drawImage(video, 0, 0);
+
+          this.imageSrc = canvas.toDataURL();
+          stream.getTracks().forEach((track) => track.stop());
+        });
+
+        document.body.appendChild(video);
+      })
+      .catch((error) => {
+        console.error('Error accessing media devices.', error);
+      });
+  }
 }

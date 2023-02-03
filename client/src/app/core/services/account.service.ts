@@ -1,3 +1,4 @@
+import { Member } from './../models/member';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/components/account/models/user.interface';
 import { Login } from 'src/app/components/account/models/login.interface';
@@ -23,26 +24,25 @@ export class AccountService {
       map((response: User) => {
         const user = response;
         if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
-          this.currentUserSource.next(user);
+          this.setCurrentUser(user);
           this._isLoggedIn.next(true);
         }
       })
     );
 
-  register$ = (user: Login): Observable<any> =>
+  register$ = (user: Login): Observable<void> =>
     this.http.post(`${this.apiUrl}account/register`, user).pipe(
       map((response: User) => {
         const user = response;
         if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
-          this.currentUserSource.next(user);
+          this.setCurrentUser(user);
           this._isLoggedIn.next(true);
         }
       })
     );
 
   setCurrentUser(user: User) {
+    localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
     this._isLoggedIn.next(true);
   }

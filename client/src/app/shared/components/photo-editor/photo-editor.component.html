@@ -1,0 +1,32 @@
+<div class="absolute p-5 bottom-0 grid cursor-pointer  w-full grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-2">
+  <ng-container *ngFor="let photo of member.photos">
+    <img [src]="photo.url" class="rounded-md" (click)="openDialog(photo)" [alt]="photo.url">
+  </ng-container>
+  <app-file-uploader />
+
+
+
+</div>
+
+
+<div
+  class="absolute z-30 delay-500 transition-transform animate-pulse  top-0 bottom-0  hover:animate-none cursor-pointer h-full flex flex-row-reverse object-cover right-0 "
+  *ngIf="image">
+
+  <div (click)="closeDialog()" class="mr-1  absolute bg-red-600 text-white p-2 shadow-md mt-3 rounded-full">
+
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+      class="w-6 fill-red-400 h-6 ">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </div>
+
+
+
+  <img [src]="image" class="rounded-md object-cover" (click)="image=undefined">
+
+  <div class="absolute bottom-1 bg-slate-400 text-white rounded-md flex w-full justify-center">
+    <button class="bg-red-400" (click)="setMainPhoto(currentPhoto)">Set Main</button>
+    <button class="p-1" (click)="deletePhoto(currentPhoto.id)">Delete Photo</button>
+  </div>
+</div>

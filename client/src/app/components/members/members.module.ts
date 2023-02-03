@@ -8,7 +8,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MemberDetailComponent } from './member-detail/member-detail.component';
 
 @NgModule({
-  declarations: [MemberListComponent, MemberCardComponent, MemberDetailComponent],
+  declarations: [
+    MemberListComponent,
+    MemberCardComponent,
+    MemberDetailComponent,
+  ],
   imports: [CommonModule, MembersRoutingModule, SharedModule],
 })
 export class MembersModule {}

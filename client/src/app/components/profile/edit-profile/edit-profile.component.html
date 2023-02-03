@@ -1,7 +1,7 @@
 <ng-container *ngIf="member$ | async as member">
 
   <div *ngIf="message"
-    class="flex bg-slate-100  py-2 justify-center absolute right-20 transition-all delay-150 text-green-900">
+    class="flex  bg-slate-100  py-2 justify-center absolute right-20 transition-all delay-150 text-green-900">
     <div class="bg-white flex px-3 rounded-md py-3">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
         class="w-6 h-6">
@@ -12,11 +12,16 @@
     </div>
   </div>
   <form [formGroup]="form"
-    class="grid bg-slate-100 md:px-96  h-[calc(100vh-74px)] place-items-stretch  grid-cols-2 place-content-center	">
+    class="grid bg-slate-100 md:px-96  h-[calc(100vh-74px)] place-items-stretch  grid-cols-2  place-content-center	">
 
+
+    <div class="bg-white  rounded-md relative  overflow-hidden bg-cover bg-center"
+      style="background-image:url({{member.photoUrl}});">
+      <div class="absolute top-0 mt-20 right-0 bottom-0 left-0 bg-gradient-to-b from-transparent to-gray-900"></div>
+
+      <app-photo-editor [member]="member" />
+    </div>
     <div class=" bg-white rounded-md  ">
-
-      <!-- {{member | json}} -->
       <div class="">
         <div class="bg-white  overflow-auto rounded-sm rounded-t-md rounded-b-none shadow-md pb-3 px-3">
           <ol class="mt-4 grid  grid-cols-3 text-sm font-medium text-gray-500 cursor-pointer">
@@ -116,34 +121,14 @@
             class="bg-blue-500 hover:bg-red-700 text-white py-1 px-3 rounded-full shadow-sm    shadow-gray-800">
             {{'Update'}}
           </button>
+          <button (click)="openCamera()">Open Camera</button>
+          <br><br>
+          <img [src]="imageSrc" *ngIf="imageSrc">
+
+
+
         </div>
       </div>
     </div>
-    <div class="bg-white  rounded-md relative  overflow-hidden bg-cover bg-center"
-      style="background-image:url({{member.photoUrl}});">
-      <div class="absolute top-0 mt-20 right-0 bottom-0 left-0 bg-gradient-to-b from-transparent to-gray-900"></div>
-
-      <div class="absolute p-5 bottom-0 grid   w-full grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-5">
-        <div
-          class="bg-gray-900 p-2 border-2 border-gray-300 border-dashed h-24 rounded-md w-full text-white items-center flex justify-center">
-          1</div>
-        <div
-          class="bg-gray-900 p-2 border-2 border-gray-300 border-dashed h-24 rounded-md w-full text-white items-center flex justify-center">
-          1</div>
-        <div
-          class="bg-gray-900 p-2 border-2 border-gray-300 border-dashed h-24 rounded-md w-full text-white items-center flex justify-center">
-          1</div>
-        <div
-          class="bg-gray-900 p-2 border-2 border-gray-300 border-dashed h-24 rounded-md w-full text-white items-center flex justify-center">
-          1</div>
-        <div
-          class="bg-gray-900 p-2 border-2 border-gray-300 border-dashed h-24 rounded-md w-full text-white items-center flex justify-center">
-          1</div>
-        <div
-          class="bg-gray-900 p-2 border-2 border-gray-300 border-dashed h-24 rounded-md w-full text-white items-center flex justify-center">
-          1</div>
-      </div>
-    </div>
-
   </form>
 </ng-container>

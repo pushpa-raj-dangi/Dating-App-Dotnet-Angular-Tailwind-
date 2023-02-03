@@ -1,0 +1,25 @@
+<div class="bg-gray-200 cursor-pointer rounded-md py-9 text-center" *ngIf="progress < 1">
+  <input type="file" #uploadTemplate class="hidden" (change)="selectFile($event)" />
+  <button class="bg-red-900  p-2 shadow-sm shadow-black rounded-full text-white" (click)="uploadTemplate.click()">
+    <svg class="fill-gray-50 h-2 w-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+      stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+    </svg>
+  </button>
+</div>
+
+
+<div>
+  <img *ngFor="let img of preview" [src]="img" class="rounded-md">
+</div>
+
+<!--
+<div *ngIf="progress" class="h-3 relative max-w-xl rounded-full overflow-hidden">
+  <div class="w-full h-full bg-gray-200 absolute"></div>
+  <div id="bar" class="h-full bg-green-500 relative w-0" [style.width]="progress+'%'"></div>
+</div>
+
+<div *ngIf="message" class="alert alert-secondary" role="alert">
+  {{ message }}
+</div> -->

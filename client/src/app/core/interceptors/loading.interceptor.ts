@@ -20,7 +20,7 @@ export class LoadingInterceptor implements HttpInterceptor {
     console.log(req, 'requested');
 
     return next.handle(req).pipe(
-      delay(1000),
+      delay(0),
       finalize(() => {
         this.lodingService.idle();
       })
