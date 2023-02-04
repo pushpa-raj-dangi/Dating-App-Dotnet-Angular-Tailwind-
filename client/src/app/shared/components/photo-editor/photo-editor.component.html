@@ -4,13 +4,11 @@
   </ng-container>
   <app-file-uploader />
 
-
-
 </div>
 
 
-<div
-  class="absolute z-30 delay-500 transition-transform animate-pulse  top-0 bottom-0  hover:animate-none cursor-pointer h-full flex flex-row-reverse object-cover right-0 "
+<div [@bounceInDown]="animationState"
+  class="absolute z-30   top-0 bottom-0  cursor-pointer h-full flex flex-row-reverse object-cover right-0 "
   *ngIf="image">
 
   <div (click)="closeDialog()" class="mr-1  absolute bg-red-600 text-white p-2 shadow-md mt-3 rounded-full">
@@ -25,8 +23,13 @@
 
   <img [src]="image" class="rounded-md object-cover" (click)="image=undefined">
 
-  <div class="absolute bottom-1 bg-slate-400 text-white rounded-md flex w-full justify-center">
-    <button class="bg-red-400" (click)="setMainPhoto(currentPhoto)">Set Main</button>
-    <button class="p-1" (click)="deletePhoto(currentPhoto.id)">Delete Photo</button>
+  <div class="absolute bottom-1  text-white space-x-3 rounded-md flex w-full justify-center">
+    <button class="bg-blue-400 px-3 rounded-full  shadow-md " (click)="setMainPhoto(currentPhoto)">Set
+      Main</button>
+    <div class="relative">
+
+      <app-confirm-popup (confirmation)="handleConfirm($event)" [title]="'Do you want to delete?'"
+        [btnText]="'Delete'" />
+    </div>
   </div>
 </div>

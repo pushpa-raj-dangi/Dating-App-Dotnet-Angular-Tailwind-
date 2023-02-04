@@ -1,3 +1,4 @@
+import { ToastNotificationComponent } from './shared/components/toast-notification/toast-notification.component';
 import { TestErrorComponent } from './errors/test-error/test-error.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,6 +24,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
+    ToastNotificationComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

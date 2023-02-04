@@ -1,6 +1,6 @@
 import { Observable, map, take } from 'rxjs';
 import { AccountService } from 'src/app/core/services/account.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, createNgModule } from '@angular/core';
 import { MembersService } from 'src/app/core/services/members.service';
 import { Member } from 'src/app/core/models/member';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -99,15 +99,21 @@ export class EditProfileComponent implements OnInit {
           video.play();
         });
 
-        video.addEventListener('click', () => {
-          const canvas = document.createElement('canvas');
-          canvas.width = video.videoWidth;
-          canvas.height = video.videoHeight;
-          canvas.getContext('2d').drawImage(video, 0, 0);
+        (video.style.position = 'absolute'),
+          (video.style.top = '0'),
+          (video.style.left = '0'),
+          (video.style.width = '250px'),
+          (video.style.bottom = '0'),
+          video.addEventListener('click', () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
 
-          this.imageSrc = canvas.toDataURL();
-          stream.getTracks().forEach((track) => track.stop());
-        });
+            canvas.getContext('2d').drawImage(video, 0, 0);
+
+            this.imageSrc = canvas.toDataURL();
+            stream.getTracks().forEach((track) => track.stop());
+          });
 
         document.body.appendChild(video);
       })

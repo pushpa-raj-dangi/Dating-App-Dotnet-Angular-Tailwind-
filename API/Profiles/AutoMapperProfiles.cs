@@ -1,4 +1,5 @@
 
+using API.Dtos.AccountDtos;
 using API.Dtos.PhotoDtos;
 using API.Dtos.UserDtos;
 using API.Extensions;
@@ -17,6 +18,7 @@ namespace API.Profiles
             .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
             CreateMap<Photo, PhotoDto>();
             CreateMap<UserUpdateDto, AppUser>();
+            CreateMap<RegisterDto, AppUser>();
 
         }
     }
