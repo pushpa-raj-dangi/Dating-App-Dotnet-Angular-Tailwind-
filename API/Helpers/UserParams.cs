@@ -4,7 +4,14 @@ namespace API.Helpers
     {
         private const int MaxPageSize = 50;
         public int PageNumber { get; set; } = 1;
+        public string CurrentUsername { get; set; }
+        public string Gender { get; set; }
+        public int MinAge { get; set; } = 18;
+        public int MaxAge { get; set; } = 180;
         private int _pageSize = 10;
+        public string OrderBy { set; get; } = "lastActive";
+
+
 
         public int PageSize
         {

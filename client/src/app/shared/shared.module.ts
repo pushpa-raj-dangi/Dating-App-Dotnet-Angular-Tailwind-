@@ -1,3 +1,4 @@
+import { PaginationComponent } from './components/pagination/pagination.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
 import { LoadingInterceptor } from './../core/interceptors/loading.interceptor';
@@ -10,7 +11,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { PhotoEditorComponent } from './components/photo-editor/photo-editor.component';
 
 @NgModule({
-  imports: [CommonModule, ConfirmDialogComponent],
+  imports: [CommonModule, ConfirmDialogComponent, PaginationComponent],
   declarations: [LoaderComponent, PhotoEditorComponent, FileUploaderComponent],
   exports: [
     CommonModule,

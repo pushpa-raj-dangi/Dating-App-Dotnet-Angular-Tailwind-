@@ -15,6 +15,7 @@ export class MemberDetailComponent implements OnInit {
   user$: Observable<Member>;
   userName$: Observable<string>;
   slide = RouterAnimations.routeSlide;
+  userName: string;
 
   constructor(
     private memberService: MembersService,
@@ -26,11 +27,16 @@ export class MemberDetailComponent implements OnInit {
     this.getUser();
   }
   getUser(): void {
-    this.userName$ = this.activatedRoute.params.pipe(
-      map((username) => {
-        return username['username'];
-      })
-    );
-    this.user$ = this.memberService.member$(this.userName$);
+    // this.userName$ = this.activatedRoute.params.pipe(
+    //   map((username) => {
+    //     this.userName = username['username'];
+    //     return username['username'];
+    //   })
+
+    this.activatedRoute.params.subscribe((username) => {
+      this.userName = username['username'];
+    });
+
+    this.user$ = this.memberService.getMember(this.userName);
   }
 }

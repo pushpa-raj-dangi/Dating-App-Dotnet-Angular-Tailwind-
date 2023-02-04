@@ -1,8 +1,57 @@
-<div class="flex relative flex-col">
-  <div class="grid md:px-56   md:py-10  grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-5">
-    <ng-container *ngFor="let item of members$ | async">
+<div class="text-center py-5">
+  <h2 class="font-semibold text-gray-500 ">Your matches <span
+      class="bg-red-600 text-white rounded-full text-sm p-1 inline-flex justify-center items-center w-8 h-8 ">{{pagination?.totalItems}}</span>
+    founds </h2>
+</div>
+<div class="text-center">
+  <form #form="ngForm" class="flex justify-center space-x-4 my-2" (ngSubmit)="loadMembers()" autocomplete="off">
+    <div>
+      <span class="text-sm">Age from</span>
+      <input type="number" class="border rounded-md px-2 py-1 dark:border-slate-300" name="minAge"
+        [(ngModel)]="userParams.minAge">
+    </div>
+    <div>
+      <span class="text-sm">Age from</span>
+      <input type="number" class="border rounded-md px-2 py-1 dark:border-slate-300" name="maxAge"
+        [(ngModel)]="userParams.maxAge">
+    </div>
+    <div>
+      <span class="text-sm">Gender</span>
+      <select name="gender" class="border rounded-md px-2 py-1 dark:border-slate-300 " [(ngModel)]="userParams.gender">
+        <option *ngFor="let gender of genderList" [value]="gender.key">
+          {{gender.value}}
+        </option>
+      </select>
+    </div>
+    <div>
+      <span class="text-sm">Order By</span>
+      <select name="orderBy" class="border rounded-md px-2 py-1 dark:border-slate-300 "
+        [(ngModel)]="userParams.orderBy">
+        <option *ngFor="let order of orderByList" [value]="order.key">
+          {{order.value}}
+        </option>
+      </select>
+    </div>
+    <div>
+      <button type="su
+      " class="bg-blue-400 rounded-md px-3 py-1 text-white shadow-sm shadow-slate-400">Filter</button>
+      <button (click)="resetFilter()"
+        class="bg-red-400 px-3 py-1 text-white rounded-md shadow-sm shadow-slate-400">Reset</button>
+    </div>
+  </form>
+</div>
+
+<div class="flex py-2 relative flex-col">
+  <div class="text-center text-semibold " *ngIf="members?.length==0">No result found</div>
+  <div class="grid md:px-56   md:py-5  grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-5">
+    <ng-container *ngFor="let item of members">
       <app-member-card [member]="item" (toggleDetail)="toggleDetail($event)"></app-member-card>
     </ng-container>
   </div>
+
+
+  <app-pagination [currentPage]="pagination?.currentPage" [totalItems]="pagination?.totalItems"
+    [itemsPerPage]="pagination?.itemsPerPage" (pageChanged)="pageChanged($event)" />
+
 
 </div>

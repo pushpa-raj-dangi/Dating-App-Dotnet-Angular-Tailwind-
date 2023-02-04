@@ -16,6 +16,7 @@ export class EditProfileComponent implements OnInit {
   member$: Observable<Member>;
   type = 'detail';
   message: string;
+  username: string;
   constructor(
     private accountService: AccountService,
     private memberService: MembersService,
@@ -28,17 +29,22 @@ export class EditProfileComponent implements OnInit {
   }
 
   getAccountDetail() {
-    this.member$ = this.memberService.member$(this.userName$).pipe(take(1));
+    this.member$ = this.memberService.getMember(this.username).pipe(take(1));
     this.buildMemberForm();
     this.patchMemberForm();
   }
 
   getUser() {
-    this.userName$ = this.accountService.currentUser$.pipe(
-      map((userName) => {
-        return userName.userName;
-      })
-    );
+    // this.userName$ = this.accountService.currentUser$.pipe(
+    //   map((userName) => {
+    //     this.username = userName.userName;
+    //     return userName.userName;
+    //   })
+    // );
+
+    this.accountService.currentUser$.pipe(take(1)).subscribe((user) => {
+      this.username = user.userName;
+    });
   }
 
   toggle(type: string) {

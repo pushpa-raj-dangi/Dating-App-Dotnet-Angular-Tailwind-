@@ -4,7 +4,7 @@ namespace API.Helpers
 {
     public class PagedList<T> : List<T>
     {
-        public PagedList(IEnumerable<T> items, int pageNumber, int pageSize, int count)
+        public PagedList(IEnumerable<T> items, int count, int pageNumber, int pageSize)
         {
             CurrentPage = pageNumber;
             TotalPages = (int)Math.Ceiling(count / (double)pageSize);

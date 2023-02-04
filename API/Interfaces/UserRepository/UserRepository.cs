@@ -32,8 +32,23 @@ namespace API.Interfaces.UserRepository
 
         public async Task<PagedList<UserReturnDto>> GetMembersAsync(UserParams userParams)
         {
-            var query = _context.Users.ProjectTo<UserReturnDto>(_mapper.ConfigurationProvider);
-            return await PagedList<UserReturnDto>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
+            var query = _context.Users.AsQueryable();
+
+            query = query.Where(u => u.UserName != userParams.CurrentUsername);
+            query = query.Where(u => u.Gender == userParams.Gender);
+
+            var minDOB = DateTime.Today.AddYears(-userParams.MaxAge - 1);
+            var maxDOB = DateTime.Today.AddYears(-userParams.MinAge);
+
+            query = query.Where(u => u.DateOfBirth >= minDOB && u.DateOfBirth <= maxDOB);
+
+            query = userParams.OrderBy switch
+            {
+                "created" => query.OrderByDescending(u => u.Created),
+                _ => query.OrderByDescending(u => u.LastActive)
+            };
+
+            return await PagedList<UserReturnDto>.CreateAsync(query.ProjectTo<UserReturnDto>(_mapper.ConfigurationProvider).AsNoTracking(), userParams.PageNumber, userParams.PageSize);
 
         }
 

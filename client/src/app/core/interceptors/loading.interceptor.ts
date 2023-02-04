@@ -17,7 +17,6 @@ export class LoadingInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     this.lodingService.show();
-    console.log(req, 'requested');
 
     return next.handle(req).pipe(
       delay(0),
