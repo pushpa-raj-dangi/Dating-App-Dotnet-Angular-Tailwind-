@@ -1,6 +1,7 @@
 using API.Dtos.PhotoDtos;
 using API.Dtos.UserDtos;
 using API.Extensions;
+using API.Helpers;
 using API.Interfaces.UserRepository;
 using API.Models;
 using API.Services.Photos;
@@ -26,10 +27,11 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserReturnDto>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<UserReturnDto>>> GetUsers([FromQuery] UserParams userParams)
         {
-            var users = await _repository.GetUsersAsync();
-            return Ok(_mapper.Map<IEnumerable<UserReturnDto>>(users));
+            var users = await _repository.GetMembersAsync(userParams);
+            Response.AddPaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
+            return Ok(users);
         }
 
         [HttpGet("id/{id}")]
