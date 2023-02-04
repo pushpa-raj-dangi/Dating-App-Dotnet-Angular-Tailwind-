@@ -1,3 +1,4 @@
+import { Message } from './../../interfaces/message.interface';
 import {
   trigger,
   state,
@@ -6,7 +7,14 @@ import {
   animate,
 } from '@angular/animations';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
+import { interval, take, timer } from 'rxjs';
 import { ToastService } from 'src/app/shared/services/index';
 
 @Component({
@@ -14,8 +22,8 @@ import { ToastService } from 'src/app/shared/services/index';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './toast-notification.component.html',
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [``],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('messageState', [
       state(
@@ -43,7 +51,28 @@ import { ToastService } from 'src/app/shared/services/index';
   ],
 })
 export class ToastNotificationComponent implements OnInit {
+  @Input() message: Message;
+  @Input() type: string;
+  show = false;
+  width: number;
+
   constructor(private toastService: ToastService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.toastService.messageObserver.subscribe((x: Message) => {
+      this.message = x;
+      this.show = true;
+      this.type = x.type;
+      console.log(x);
+    });
+    interval(6000)
+      .pipe(take(1))
+      .subscribe((x) => {
+        this.show = false;
+      });
+  }
+
+  hide() {
+    this.show = false;
+  }
 }

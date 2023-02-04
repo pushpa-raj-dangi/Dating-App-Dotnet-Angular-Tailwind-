@@ -10,7 +10,7 @@ const routes: Routes = [
       import('src/app/components/home/home.module').then((m) => m.HomeModule),
   },
   {
-    path: 'error',
+    path: 'server-error',
     component: TestErrorComponent,
   },
   {
