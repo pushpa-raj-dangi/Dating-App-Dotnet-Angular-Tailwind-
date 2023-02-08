@@ -2,6 +2,8 @@ using API.Data;
 using API.Extensions;
 using API.Middleware;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +15,21 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(
+//     c =>
+
+//    {
+//        c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api", Version = "v1" });
+//        c.AddSecurityDefinition("token", new OpenApiSecurityScheme
+//        {
+//            Type = SecuritySchemeType.ApiKey,
+//            In = ParameterLocation.Header,
+//            Name = HeaderNames.Authorization,
+//            Scheme = "Bearer"
+//        });
+//    }
+);
+
 
 builder.Services.AddIdentityServices(builder.Configuration);
 var app = builder.Build();

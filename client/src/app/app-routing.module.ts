@@ -44,6 +44,7 @@ const routes: Routes = [
       ),
     data: { animation: 'routeSlide' },
   },
+  { path: 'likes', loadChildren: () => import('./components/likes/likes.module').then(m => m.LikesModule) },
 ];
 
 @NgModule({

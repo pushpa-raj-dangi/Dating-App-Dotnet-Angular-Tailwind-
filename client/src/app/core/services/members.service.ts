@@ -216,4 +216,16 @@ export class MembersService {
       })
     );
   }
+
+  addLike(username: string) {
+    return this.http.post(`${this.apiUrl}likes/${username}`, {});
+  }
+
+  getLikes(perdicate: string, pageNumber: number, pageSize: number) {
+    let params = this.getPaginationHeaders(pageNumber, pageSize);
+
+    params = params.append('predicate', perdicate);
+
+    return this.getPageinatedResult(`${this.apiUrl}likes`, params);
+  }
 }

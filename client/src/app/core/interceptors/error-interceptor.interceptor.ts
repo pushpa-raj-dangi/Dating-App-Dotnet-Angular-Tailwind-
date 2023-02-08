@@ -19,6 +19,8 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error) => {
+        console.log(error, 'errororororo');
+
         if (error) {
           switch (error.status) {
             case 400:
@@ -35,12 +37,13 @@ export class ErrorInterceptor implements HttpInterceptor {
                   ]);
                 }
                 throw modalStateError.flat();
-              } else {
-                console.log('error', error.statusText, error.status);
+              } else if (typeof error.error === 'object') {
                 this.toastService.add({
                   type: 'error',
                   text: error.statusText,
                 });
+              } else {
+                this.toastService.add({ type: 'error', text: error.error });
               }
               break;
             case 401:

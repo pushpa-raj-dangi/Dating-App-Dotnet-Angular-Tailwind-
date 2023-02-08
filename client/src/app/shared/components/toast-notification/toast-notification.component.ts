@@ -7,14 +7,8 @@ import {
   animate,
 } from '@angular/animations';
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
-import { interval, take, timer } from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
+import { interval, take } from 'rxjs';
 import { ToastService } from 'src/app/shared/services/index';
 
 @Component({

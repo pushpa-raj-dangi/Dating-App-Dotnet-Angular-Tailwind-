@@ -1,7 +1,9 @@
 using API.Data;
 using API.Helpers;
 using API.Interfaces;
+using API.Interfaces.MessageRepository;
 using API.Interfaces.Photos;
+using API.Interfaces.UserLikeRepository;
 using API.Interfaces.UserRepository;
 using API.Profiles;
 using API.Services;
@@ -19,6 +21,8 @@ namespace API.Extensions
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ILikesRepository, LikeRepository>();
+            services.AddScoped<IMessageRepository, MessageRepository>();
             services.AddScoped<LogUserActivity>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 

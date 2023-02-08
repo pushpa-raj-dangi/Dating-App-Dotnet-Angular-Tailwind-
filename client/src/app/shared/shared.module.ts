@@ -1,3 +1,4 @@
+import { TimeAgoPipe } from 'src/app/core/pipes/time-ago.pipe';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
